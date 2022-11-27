@@ -247,6 +247,62 @@ const insertion = arr => {
     return arr;
 };
 
+// Odd even sort
+const oddEvenSort = (arr) => {
+    n = arr.length
+    let isSorted = false;
+
+    while (!isSorted) {
+        isSorted = true;
+        let temp = 0;
+
+        // Perform Bubble sort on odd indexed element
+        for (let i = 1; i <= n - 2; i = i + 2) {
+            if (arr[i] > arr[i + 1]) {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                isSorted = false;
+            }
+        }
+
+        // Perform Bubble sort on even indexed element
+        for (let i = 0; i <= n - 2; i = i + 2) {
+            if (arr[i] > arr[i + 1]) {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                isSorted = false;
+            }
+        }
+    }
+
+    return arr;
+}
+
+const shellSort = (arr) => {
+    var increment = arr.length / 2;
+    while (increment > 0) {
+        for (i = increment; i < arr.length; i++) {
+            var j = i;
+            var temp = arr[i];
+
+            while (j >= increment && arr[j - increment] > temp) {
+                arr[j] = arr[j - increment];
+                j = j - increment;
+            }
+
+            arr[j] = temp;
+        }
+
+        if (increment == 2) {
+            increment = 1;
+        } else {
+            increment = parseInt(increment * 5 / 11);
+        }
+    }
+    return arr;
+}
 
 module.exports = {
     bubbleSort,
@@ -256,5 +312,7 @@ module.exports = {
     quickSort,
     mergeSort,
     heapSort,
-    bucketSort
+    bucketSort,
+    oddEvenSort,
+    shellSort
 };
