@@ -20,31 +20,31 @@ const bubbleSort = (inputArr) => {
 const countSort = (arr) => {
     const n = arr.length;
     let maxElement = 0;
-    
-    for(let i=0; i<n; i++){
-        if(arr[i]>maxElement){
-            maxElement=arr[i];
+
+    for (let i = 0; i < n; i++) {
+        if (arr[i] > maxElement) {
+            maxElement = arr[i];
         }
     }
 
-    let counts = new Array(maxElement+1);
+    let counts = new Array(maxElement + 1);
 
-    for(let i=0; i<=maxElement; i++){
-        counts[i]=0;
+    for (let i = 0; i <= maxElement; i++) {
+        counts[i] = 0;
     }
 
-    for(let i=0; i<n; i++){
+    for (let i = 0; i < n; i++) {
         counts[arr[i]]++;
     }
 
     let newArray = new Array(n);
-    
-    let c=0;
 
-    for(let i=0; i<=maxElement; i++){
-        while(counts[i]>0){
+    let c = 0;
+
+    for (let i = 0; i <= maxElement; i++) {
+        while (counts[i] > 0) {
             newArray[c++] = i;
-            counts[i]--;   
+            counts[i]--;
         }
     }
 
@@ -69,23 +69,20 @@ const selectionSort = (arr) => {
     let n = arr.length;
 
     for (let i = 0; i < n; i++) {
-      // Set the minimum to this position.
-      min_index = i;
-  
-      // Looking for a smaller number in the unsorted subarray.
-      for (let j = i + 1; j < n; j++) {
-        // If find one, set the minimum to this position.
-        if (arr[j] < arr[min_index]) {
-          min_index = j;
+        // Set the minimum to this position.
+        min_index = i;
+
+        // Looking for a smaller number in the unsorted subarray.
+        for (let j = i + 1; j < n; j++) {
+            // If find one, set the minimum to this position.
+            if (arr[j] < arr[min_index]) {
+                min_index = j;
+            }
         }
-      }
-  
-      // If the current minimum index is not the minimum index you started with, swap the elements.
-      if (min_index != i) {
+
         let temp = arr[i];
         arr[i] = arr[min_index];
         arr[min_index] = temp;
-      }
     }
     return arr;
 }
@@ -109,13 +106,13 @@ const partition = (arr, start, end) => {
     let p = start;
     let pivot = arr[end];
     for (let i = start; i < end; i++) {
-    if (arr[i] <= pivot) {
-        let temp = arr[i];
-        arr[i] = arr[p];
-        arr[p] = temp;
-        p++;
+        if (arr[i] <= pivot) {
+            let temp = arr[i];
+            arr[i] = arr[p];
+            arr[p] = temp;
+            p++;
 
-    }
+        }
     }
     let temp = arr[p];
     arr[p] = arr[end];
