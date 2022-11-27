@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@stryker-mutator/core": "^6.3.0",
+    "@stryker-mutator/jest-runner": "^6.3.0",
+    "@stryker-mutator/mocha-runner": "^6.3.0"
+  },
+  "dependencies": {
+    "jest": "^29.3.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
