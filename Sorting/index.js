@@ -51,8 +51,21 @@ const countSort = (arr) => {
     return newArray;
 };
 
+// Insertion Sort
+const insertionSort = (unsortedArray) => {
+    for (let i = 1; i < unsortedArray.length; i++) {
+        let current = unsortedArray[i];
+        let j;
+        for (j = i - 1; j >= 0 && unsortedArray[j] > current; j--) {
+            unsortedArray[j + 1] = unsortedArray[j]
+        }
+        unsortedArray[j + 1] = current;
+    }
+    return unsortedArray;
+}
 
 module.exports = {
     bubbleSort,
-    countSort
+    countSort,
+    insertionSort
 };
