@@ -9,7 +9,7 @@ const binarySearch = (arr, itemToSearch) => {
         else
             return {
                 present: true,
-                index: parseInt(mid + 1)
+                index: parseInt(mid)
             };
         mid = parseInt((first + last) / 2);
     }
@@ -18,6 +18,22 @@ const binarySearch = (arr, itemToSearch) => {
     };
 }
 
+// Linear Search
+const linearSearch = (arr, itemToSearch) => {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === itemToSearch) {
+            return {
+                present: true,
+                index: i
+            };
+        }
+    }
+    return {
+        present: false
+    };
+}
+
 module.exports = {
     binarySearch,
+    linearSearch
 }
