@@ -144,18 +144,117 @@ const mergeSort = (arr) => {
         return arr;
     }
 
-    let middle = Math.floor(arr.length/2);
+    let middle = Math.floor(arr.length / 2);
     let left = arr.slice(0, middle);
     let right = arr.slice(middle);
 
     return Merge(mergeSort(left), mergeSort(right));
 
 }
+
+// Heap Sort
+const heapSort = (arr) => {
+    var N = arr.length;
+
+    // Build heap (rearrange array)
+    for (var i = Math.floor(N / 2) - 1; i >= 0; i--)
+        heapify(arr, N, i);
+
+    // One by one extract an element from heap
+    for (var i = N - 1; i > 0; i--) {
+        // Move current root to end
+        var temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+
+        // call max heapify on the reduced heap
+        heapify(arr, i, 0);
+    }
+
+    return arr;
+}
+
+// To heapify a subtree rooted with node i which is
+// an index in arr[]. n is size of heap
+const heapify = (arr, N, i) => {
+    var largest = i; // Initialize largest as root
+    var l = 2 * i + 1; // left = 2*i + 1
+    var r = 2 * i + 2; // right = 2*i + 2
+
+    // If left child is larger than root
+    if (l < N && arr[l] > arr[largest])
+        largest = l;
+
+    // If right child is larger than largest so far
+    if (r < N && arr[r] > arr[largest])
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        var swap = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = swap;
+
+        // Recursively heapify the affected sub-tree
+        heapify(arr, N, largest);
+    }
+}
+
+// Bucket Sort
+const bucketSort = arr => {
+    if (arr.length === 0) {
+        return arr;
+    }
+    let i,
+        minValue = arr[0],
+        maxValue = arr[0],
+        bucketSize = 5;
+    arr.forEach(function (currentVal) {
+        if (currentVal < minValue) {
+            minValue = currentVal;
+        } else if (currentVal > maxValue) {
+            maxValue = currentVal;
+        }
+    })
+    let bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1;
+    let allBuckets = new Array(bucketCount);
+    for (i = 0; i < allBuckets.length; i++) {
+        allBuckets[i] = [];
+    }
+    arr.forEach(function (currentVal) {
+        allBuckets[Math.floor((currentVal - minValue) / bucketSize)].push(currentVal);
+    });
+    arr.length = 0;
+    allBuckets.forEach(function (bucket) {
+        insertion(bucket);
+        bucket.forEach(function (element) {
+            arr.push(element)
+        });
+    });
+    return arr;
+}
+
+const insertion = arr => {
+    let length = arr.length;
+    let i, j;
+    for (i = 1; i < length; i++) {
+        let temp = arr[i];
+        for (j = i - 1; j >= 0 && arr[j] > temp; j--) {
+            arr[j + 1] = arr[j];
+        }
+        arr[j + 1] = temp;
+    }
+    return arr;
+};
+
+
 module.exports = {
     bubbleSort,
     countSort,
     insertionSort,
     selectionSort,
     quickSort,
-    mergeSort
+    mergeSort,
+    heapSort,
+    bucketSort
 };
