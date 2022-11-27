@@ -12,7 +12,7 @@ const {
     combSort,
     pigeonholeSort
 } 
-= require('./Sorting/index.js')
+= require('../Sorting/index.js')
 
 describe('Unit test for bubble sort', () => {
     test('Empty array', () => {
