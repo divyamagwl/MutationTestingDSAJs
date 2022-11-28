@@ -10,5 +10,12 @@ const config = {
   testRunner_comment:
     "More information about the jest plugin can be found here: https://stryker-mutator.io/docs/stryker-js/jest-runner",
   coverageAnalysis: "perTest",
+  dashboard: {
+    project: "github.com/stryker-mutator/stryker-js",
+    version: "master",
+    module: "packages/stryker-jest-runner",
+    baseUrl: "https://dashboard.stryker-mutator.io/api/reports",
+    reportType: "full",
+  },
 };
 export default config;
