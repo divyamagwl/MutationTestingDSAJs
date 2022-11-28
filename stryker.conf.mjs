@@ -1,7 +1,7 @@
 // @ts-check
 /** @type {import('@stryker-mutator/api/core').PartialStrykerOptions} */
 const config = {
-  mutate: ["Sorting/index.js", "Searching/index.js", "Tree/index.js"],
+  mutate: ["Sorting/index.js", "Searching/index.js", "Tree/index.js", "LinkedList/index.js"],
   _comment:
     "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information.",
   packageManager: "npm",
@@ -15,6 +15,7 @@ const config = {
     version: "master",
     module: "packages/stryker-jest-runner",
     baseUrl: "https://dashboard.stryker-mutator.io/api/reports",
+    // @ts-ignore
     reportType: "full",
   },
 };
