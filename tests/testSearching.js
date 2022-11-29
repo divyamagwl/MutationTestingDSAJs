@@ -52,4 +52,10 @@ describe('Testing for linear search', () => {
         res = linearSearch(arr, 1000);
         expect(res.present).toEqual(false);
     })
+    test('Find undefined', () => {
+        let arr = [10];
+
+        let res = linearSearch(arr, undefined);
+        expect(res.present).toEqual(false);
+    })
 })
