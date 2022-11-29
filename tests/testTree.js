@@ -3,65 +3,72 @@ const Node = T.Node;
 const Tree = T.Tree;
 
 describe('Node', () => {
-  test('Node is a constructor', () => {
+  test('Constructor', () => {
     expect(typeof Node.prototype.constructor).toEqual('function');
   });
 
-  test('Node has a data and children properties', () => {
-    const n = new Node('a');
-    expect(n.data).toEqual('a');
+  test('Data and Children', () => {
+    const n = new Node(1);
+    expect(n.data).toEqual(1);
     expect(n.children.length).toEqual(0);
   });
 
-  test('Node can add children', () => {
-    const n = new Node('a');
-    n.add('b');
+  test('Add children', () => {
+    const n = new Node(1);
+    n.add(2);
     expect(n.children.length).toEqual(1);
-    expect(n.children[0].children).toEqual([]);
+    expect(n.children[0].children.length).toEqual(0);
   });
 
-  test('Node can remove children', () => {
-    const n = new Node('a');
-    n.add('b');
+  test('Remove children', () => {
+    const n = new Node(1);
+    n.add(2);
     expect(n.children.length).toEqual(1);
-    n.remove('b');
+    n.remove(2);
     expect(n.children.length).toEqual(0);
   });
+
+  test('Remove children: empty list', () => {
+    const n = new Node(1);
+    n.remove(2);
+    expect(n.children.length).toEqual(0);
+  });
+
+  test('Remove children: wrong element', () => {
+    const n = new Node(1);
+    n.add(2);
+    expect(n.children.length).toEqual(1);
+    n.remove(3);
+    expect(n.children.length).toEqual(1);
+  });
+
 });
 
 describe('Tree', () => {
-  test('starts empty', () => {
+  test('Empty Tree', () => {
     const t = new Tree();
     expect(t.root).toEqual(null);
   });
 
-  test('Can traverse bf', () => {
-    const letters = [];
+  test('traverseBF', () => {
+    const arr = [];
     const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('c');
-    t.root.children[0].add('d');
-
-    t.traverseBF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
+    t.root = new Node(1);
+    t.root.add(2);
+    t.root.add(3);
+    t.root.children[0].add(4);
+    t.traverseBF(node => arr.push(node.data));
+    expect(arr).toEqual([1, 2, 3, 4]);
   });
 
-  test('Can traverse DF', () => {
-    const letters = [];
+  test('traverseDF', () => {
+    const arr = [];
     const t = new Tree();
-    t.root = new Node('a');
-    t.root.add('b');
-    t.root.add('d');
-    t.root.children[0].add('c');
-
-    t.traverseDF(node => {
-      letters.push(node.data);
-    });
-
-    expect(letters).toEqual(['a', 'b', 'c', 'd']);
+    t.root = new Node(1);
+    t.root.add(2);
+    t.root.add(4);
+    t.root.children[0].add(3);
+    t.traverseDF(node => arr.push(node.data));
+    expect(arr).toEqual([1, 2, 3, 4]);
   });
 });
